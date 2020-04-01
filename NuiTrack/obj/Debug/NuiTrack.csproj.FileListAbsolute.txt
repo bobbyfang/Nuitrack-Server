@@ -1,0 +1,9 @@
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.csprojAssemblyReference.cache
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.csproj.CoreCompileInputs.cache
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\bin\Debug\NuiTrack.exe.config
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\bin\Debug\NuiTrack.exe
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\bin\Debug\NuiTrack.pdb
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\bin\Debug\nuitrack.net.dll
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.csproj.CopyComplete
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.exe
+C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.pdb
