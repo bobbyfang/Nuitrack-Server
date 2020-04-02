@@ -7,3 +7,12 @@ C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\bin\Debug\nuitrack.net.dll
 C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.csproj.CopyComplete
 C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.exe
 C:\Users\Bobby\source\repos\NuiTrack\NuiTrack\obj\Debug\NuiTrack.pdb
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Debug\NuiTrack.csprojAssemblyReference.cache
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Debug\NuiTrack.csproj.CoreCompileInputs.cache
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Debug\NuiTrack.exe
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Debug\NuiTrack.pdb
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\NuiTrack.exe.config
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\NuiTrack.exe
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\NuiTrack.pdb
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\nuitrack.net.dll
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Debug\NuiTrack.csproj.CopyComplete

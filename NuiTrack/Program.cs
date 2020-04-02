@@ -7,6 +7,8 @@ namespace NuiTrack
 {
     class Program
     {
+        static private DepthSensor _depthSensor;
+        static private ColorSensor _colorSensor;
         static private UserTracker _userTracker;
         static private SkeletonTracker _skeletonTracker;
         static private SkeletonData _skeletonData;
@@ -32,6 +34,8 @@ namespace NuiTrack
             try
             {
                 // Create and setup all required modules
+                _depthSensor = DepthSensor.Create();
+                _colorSensor = ColorSensor.Create();
                 _userTracker = UserTracker.Create();
                 _skeletonTracker = SkeletonTracker.Create();
             }
@@ -40,12 +44,27 @@ namespace NuiTrack
                 Console.WriteLine("Cannot create Nuitrack module.");
                 throw exception;
             }
-            _skeletonTracker.OnSkeletonUpdateEvent += onSkeletonUpdate;
+            // Add event handlers for all modules
+            _depthSensor.OnUpdateEvent += onDepthSensorUpdate;
+            _colorSensor.OnUpdateEvent += onColorSensorUpdate;
             _userTracker.OnUpdateEvent += onUserTrackerUpdate;
             _userTracker.OnNewUserEvent += onUserTrackerNewUser;
             _userTracker.OnLostUserEvent += onUserTrackerLostUser;
+            _skeletonTracker.OnSkeletonUpdateEvent += onSkeletonUpdate;
 
-            Nuitrack.Run();
+            // Add an event handler for the IssueUpdate event 
+            Nuitrack.onIssueUpdateEvent += onIssueDataUpdate;
+
+            try
+            {
+                Nuitrack.Run();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Cannot start Nuitrack.");
+                throw exception;
+            }
+
             while (true)
             {
                 // Update Nuitrack data. Data will be synchronized with skeleton time stamps.
@@ -179,6 +198,61 @@ namespace NuiTrack
         private static void onIssueDataUpdate(IssuesData issuesData)
         {
             _issuesData = issuesData;
+        }
+
+        // Event handler for the DepthSensorUpdate event
+        private static void onDepthSensorUpdate(DepthFrame depthFrame)
+        {
+            _depthFrame = depthFrame;
+        }
+
+        // Event handler for the ColorSensorUpdate event
+        private static void onColorSensorUpdate(ColorFrame colorFrame)
+        {
+            if (!_visualizeColorImage)
+                return;
+
+            _colorStreamEnabled = true;
+
+            //float wStep = (float)_bitmap.Width / colorFrame.Cols;
+            //float hStep = (float)_bitmap.Height / colorFrame.Rows;
+
+            //float nextVerticalBorder = hStep;
+
+            //Byte[] data = colorFrame.Data;
+            //int colorPtr = 0;
+            //int bitmapPtr = 0;
+            //const int elemSizeInBytes = 3;
+
+            //for (int i = 0; i < _bitmap.Height; ++i)
+            //{
+            //    if (i == (int)nextVerticalBorder)
+            //    {
+            //        colorPtr += colorFrame.Cols * elemSizeInBytes;
+            //        nextVerticalBorder += hStep;
+            //    }
+
+            //    int offset = 0;
+            //    int argb = data[colorPtr]
+            //        | (data[colorPtr + 1] << 8)
+            //        | (data[colorPtr + 2] << 16)
+            //        | (0xFF << 24);
+            //    float nextHorizontalBorder = wStep;
+            //    for (int j = 0; j < _bitmap.Width; ++j)
+            //    {
+            //        if (j == (int)nextHorizontalBorder)
+            //        {
+            //            offset += elemSizeInBytes;
+            //            argb = data[colorPtr + offset]
+            //                | (data[colorPtr + offset + 1] << 8)
+            //                | (data[colorPtr + offset + 2] << 16)
+            //                | (0xFF << 24);
+            //            nextHorizontalBorder += wStep;
+            //        }
+
+            //        _bitmap.Bits[bitmapPtr++] = argb;
+            //    }
+            //}
         }
     }
 }
