@@ -23,7 +23,8 @@ namespace NuiTrack
         {
             try
             {
-                Nuitrack.Init("C:\\Program Files\\Nuitrack\\nuitrack\\nuitrack\\data\\nuitrack.config");
+                Nuitrack.Init("");
+                Console.WriteLine(Nuitrack.GetLicense());
             }
             catch (Exception exception)
             {
@@ -58,14 +59,15 @@ namespace NuiTrack
             try
             {
                 Nuitrack.Run();
+                Nuitrack.GetLicense();
             }
             catch (Exception exception)
             {
                 Console.WriteLine("Cannot start Nuitrack.");
                 throw exception;
             }
-
-            while (true)
+            bool a = true;
+            while (a)
             {
                 // Update Nuitrack data. Data will be synchronized with skeleton time stamps.
                 try
@@ -88,22 +90,25 @@ namespace NuiTrack
                     {
                         foreach (var joint in skeleton.Joints)
                         {
-                            if (joint.Type == JointType.Head)
+                            if (joint.Type == JointType.LeftHand)
                             {
-                                Console.WriteLine(joint.Type);
                                 float[] m = joint.Orient.Matrix;
                                 Console.WriteLine();
                                 for (int i = 0; i < 9; i++)
                                 {
                                     Console.Write(m[i] + ",");
                                 }
-                                Console.WriteLine("{0},{1},{2}", joint.Real.X, joint.Real.Y, joint.Real.Z);
+                                Console.WriteLine();
+                                Console.WriteLine("{0},{1},{2}", (int)joint.Real.X, (int)joint.Real.Y, (int)joint.Real.Z);
                             }
                         }
                     }
                 }
+                Console.Read();
             }
+
             Nuitrack.Release();
+            Console.ReadLine();
         }
 
         // Event handler for the UserTrackerUpdate event

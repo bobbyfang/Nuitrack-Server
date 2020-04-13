@@ -1,0 +1,8 @@
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Release\NuiTrack.exe.config
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Release\NuiTrack.exe
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Release\NuiTrack.pdb
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Release\nuitrack.net.dll
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Release\NuiTrack.csproj.CoreCompileInputs.cache
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Release\NuiTrack.csproj.CopyComplete
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Release\NuiTrack.exe
+C:\GitHub\Nuitrack-Server\NuiTrack\obj\Release\NuiTrack.pdb
