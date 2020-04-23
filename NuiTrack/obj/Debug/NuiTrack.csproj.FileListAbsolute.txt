@@ -16,3 +16,4 @@ C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\NuiTrack.exe
 C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\NuiTrack.pdb
 C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\nuitrack.net.dll
 C:\GitHub\Nuitrack-Server\NuiTrack\obj\Debug\NuiTrack.csproj.CopyComplete
+C:\GitHub\Nuitrack-Server\NuiTrack\bin\Debug\Ventuz.OSC.dll
