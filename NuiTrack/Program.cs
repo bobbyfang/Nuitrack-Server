@@ -1,24 +1,26 @@
 ﻿using nuitrack;
 using nuitrack.issues;
 using System;
+using System.Collections.Generic;
 using Ventuz.OSC;
 using Exception = System.Exception;
+
 
 namespace NuiTrack
 {
     class Program
     {
-        static private DepthSensor _depthSensor;
-        static private UserTracker _userTracker;
-        static private SkeletonTracker _skeletonTracker;
-        static private SkeletonData _skeletonData;
+        private static DepthSensor _depthSensor;
+        private static UserTracker _userTracker;
+        private static SkeletonTracker _skeletonTracker;
+        private static SkeletonData _skeletonData;
 
         private static DepthFrame _depthFrame;
         private static IssuesData _issuesData = null;
+        private static int delay = 1000 / 30;
 
         static void Main(string[] args)
-        {
-            //UDP writer for OSC
+        {//UDP writer for OSC
             UdpWriter udpWrite = new UdpWriter("127.0.0.1", 2080);
 
             try
@@ -35,7 +37,6 @@ namespace NuiTrack
             {
                 // Create and setup all required modules
                 _depthSensor = DepthSensor.Create();
-                //_colorSensor = ColorSensor.Create();
                 _userTracker = UserTracker.Create();
                 _skeletonTracker = SkeletonTracker.Create();
             }
@@ -66,6 +67,7 @@ namespace NuiTrack
             bool a = true;
             while (a)
             {
+                int start = (int)DateTime.Now.TimeOfDay.TotalMilliseconds;
                 // Update Nuitrack data. Data will be synchronized with skeleton time stamps.
                 try
                 {
@@ -100,13 +102,15 @@ namespace NuiTrack
                             }
 
                             //Create new message element for joint containing joint type and rotation matrix
-                            OscElement jointMessage = new OscElement("/" + joint.Type, joint.Real.X, joint.Real.Y,joint.Real.Z, rotationMatrix[0], rotationMatrix[1], rotationMatrix[2], rotationMatrix[3], rotationMatrix[4], rotationMatrix[5], rotationMatrix[6], rotationMatrix[7], rotationMatrix[8]);
+                            OscElement jointMessage = new OscElement("/" + joint.Type, joint.Real.X, joint.Real.Y, joint.Real.Z, rotationMatrix[0], rotationMatrix[1], -1 * rotationMatrix[2], rotationMatrix[3], rotationMatrix[4], -1 * rotationMatrix[5], -1 * rotationMatrix[6], -1 * rotationMatrix[7], rotationMatrix[8]);
                             Console.WriteLine(joint.Real.X + " " + joint.Real.Y + " " + joint.Real.Z);
                             bundle.AddElement(jointMessage);
                         }
+                        //Send the message bundle with the data
+                        udpWrite.Send(bundle);
+                        int difference = delay - start - (int) DateTime.Now.TimeOfDay.TotalMilliseconds;
+                        System.Threading.Thread.Sleep(delay);
                     }
-                    //Send the message bundle with the data
-                    udpWrite.Send(bundle);
                 }
             }
 
