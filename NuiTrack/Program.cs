@@ -21,7 +21,7 @@ namespace NuiTrack
 
         static void Main(string[] args)
         {//UDP writer for OSC
-            UdpWriter udpWrite = new UdpWriter("127.0.0.1", 2080);
+            UdpWriter udpWrite = new UdpWriter("127.0.0.1", 7000);
 
             try
             {
@@ -43,6 +43,7 @@ namespace NuiTrack
             catch (Exception exception)
             {
                 Console.WriteLine("Cannot create Nuitrack module.");
+                Console.WriteLine(exception.Message);
                 throw exception;
             }
             // Add event handlers for all modules
